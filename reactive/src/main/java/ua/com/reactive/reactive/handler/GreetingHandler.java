@@ -71,4 +71,7 @@ public class GreetingHandler {
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(nomers, Nomer.class);
     }
+    public Mono<ServerResponse> registration(ServerRequest request) {
+        return ServerResponse.ok().render("registration");
+    }
 }
