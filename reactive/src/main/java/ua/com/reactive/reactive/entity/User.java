@@ -7,8 +7,10 @@ import org.springframework.data.relational.core.mapping.Table;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
 import java.util.Collection;
 import java.util.List;
+
 @Data
 @NoArgsConstructor
 @Table(name = "users")
@@ -17,33 +19,43 @@ public class User implements UserDetails {
     private Long id;
     private String username;
     private String password;
-    private Role role;
+    private Role role; // Поле для ролі
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority(role.name()));
-    }
-    /*    @Override
-        public String getPassword() {
-            return user;
+        if (role != null) {
+            return List.of(new SimpleGrantedAuthority(role.getName()));
         }
-        @Override
-        public String getUsername() {
-            return pass;
-        }*/
+        return List.of(); // Повертає порожній список, якщо роль не задана
+    }
+
+    @Override
+    public String getPassword() {
+        return password; // Повертає пароль
+    }
+
+    @Override
+    public String getUsername() {
+        return username; // Повертає ім'я користувача
+    }
+
     @Override
     public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
+        return true; // Повертає true, якщо обліковий запис не прострочений
     }
+
     @Override
     public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
+        return true; // Повертає true, якщо обліковий запис не заблокований
     }
+
     @Override
     public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
+        return true; // Повертає true, якщо облікові дані не прострочені
     }
+
     @Override
     public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
+        return true; // Повертає true, якщо обліковий запис активний
     }
 }

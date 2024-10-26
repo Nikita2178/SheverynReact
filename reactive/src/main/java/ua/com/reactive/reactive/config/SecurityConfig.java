@@ -27,16 +27,19 @@ public class SecurityConfig {
         return http
                 .csrf(csrf -> csrf.disable())  // Вимкнути CSRF-захист
                 .authorizeExchange(exchange -> exchange
-                        .pathMatchers("/", "/hello", "/registration")  // Доступні без авторизації
+                        .pathMatchers("/", "/hello", "/registration", "/login","/get_all")  // Доступні без авторизації
                         .permitAll()
-                        .pathMatchers("/all")  // Доступ для ролі "USER"
+                        .pathMatchers("/all") // Доступ тільки для ролі USER
                         .hasRole("USER")
-                        .pathMatchers("/get_all")  // Доступ для ролі "ADMIN"
+                        .pathMatchers("/3")  // Доступ для ролі "ADMIN"
                         .hasRole("ADMIN")
                         .anyExchange()  // Усі інші запити вимагають аутентифікації
                         .authenticated()
                 )
+                .httpBasic(Customizer.withDefaults()) // Дозволити базову авторизацію
                 .formLogin(Customizer.withDefaults())  // Включити форму логіну
                 .build();
+
     }
+
 }

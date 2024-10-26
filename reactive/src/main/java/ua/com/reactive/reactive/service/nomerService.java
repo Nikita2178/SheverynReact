@@ -36,7 +36,7 @@ public class nomerService {
     public Mono<Nomer> updateNomer(Long id, Nomer updatedNomer) {
         return nomerRepository.findById(id)
                 .flatMap(existingNomer -> {
-                    existingNomer.setRommName(updatedNomer.getRommName());
+                    existingNomer.setRoomName(updatedNomer.getRoomName());
                     existingNomer.setRoomType(updatedNomer.getRoomType());
                     existingNomer.setPrice(updatedNomer.getPrice());
                     existingNomer.setAvailableFrom(updatedNomer.getAvailableFrom());

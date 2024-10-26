@@ -37,7 +37,7 @@ public class bookingService {
         return bookingRepository.findById(id)
                 .flatMap(existingBooking -> {
                     existingBooking.setRoomId(updatedBooking.getRoomId());
-                    existingBooking.setGuestId(updatedBooking.getGuestId());
+                    existingBooking.setUserId(updatedBooking.getUserId());
                     existingBooking.setCheckInDate(updatedBooking.getCheckInDate());
                     existingBooking.setCheckOutDate(updatedBooking.getCheckOutDate());
                     return bookingRepository.save(existingBooking);

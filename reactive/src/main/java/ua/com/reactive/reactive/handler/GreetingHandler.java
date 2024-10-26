@@ -11,6 +11,7 @@ import ua.com.reactive.reactive.entity.Client;
 import ua.com.reactive.reactive.entity.Greeting;
 import ua.com.reactive.reactive.entity.Nomer;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 
@@ -60,9 +61,9 @@ public class GreetingHandler {
                 .queryParam("start")
                 .orElse("0");
         Flux<Nomer> nomers = Flux.just(
-                        new Nomer(1L, "Room 101", "Single", "500 UAH", new Date(), new Date()),
-                        new Nomer(2L, "Room 202", "Double", "750 UAH", new Date(), new Date()),
-                        new Nomer(3L, "Room 303", "Suite", "1500 UAH", new Date(), new Date())
+                        new Nomer(1L, "Room 101", "Single", new BigDecimal("500.00"), new Date(), new Date()),
+                        new Nomer(2L, "Room 202", "Double",new BigDecimal("750.00"), new Date(), new Date()),
+                        new Nomer(3L, "Room 303", "Suite", new BigDecimal("1500.00"), new Date(), new Date())
                 )
                 .skip(Long.valueOf(start))
                 .take(5);
