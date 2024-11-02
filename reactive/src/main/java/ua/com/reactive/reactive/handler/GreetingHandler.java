@@ -73,6 +73,7 @@ public class GreetingHandler {
                 .body(nomers, Nomer.class);
     }
     public Mono<ServerResponse> registration(ServerRequest request) {
-        return ServerResponse.ok().render("registration");
+        return ServerResponse.ok()
+                .render("registration"); // Відображаємо шаблон 'registration'
     }
 }

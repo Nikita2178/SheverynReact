@@ -6,6 +6,7 @@ create table users
     name varchar(100),
     surname varchar(100),
     phone varchar(100)
+
 );
 create table roles
 (
@@ -24,3 +25,5 @@ ALTER TABLE roles_has_users
 ALTER TABLE roles_has_users
     ADD CONSTRAINT fk_role_id
         FOREIGN KEY (role_id) REFERENCES roles(id);
+
+SELECT * FROM users;

@@ -22,7 +22,8 @@ public class GreetingRouter {
                 .route(RequestPredicates.GET("/hello").and(accept(MediaType.APPLICATION_JSON)), greetingHandler::hello)
                 .andRoute(RequestPredicates.GET("/"), greetingHandler::home)
                 .andRoute(RequestPredicates.GET("/users"), greetingHandler::getClients)
-                .andRoute(RequestPredicates.GET("/rooms"), greetingHandler::getNomer);
+                .andRoute(RequestPredicates.GET("/rooms"), greetingHandler::getNomer)
+                .andRoute(RequestPredicates.GET("/registration"), greetingHandler::registration);
     }
 
 }

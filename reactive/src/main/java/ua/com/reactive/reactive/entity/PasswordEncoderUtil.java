@@ -1,19 +1,22 @@
 package ua.com.reactive.reactive.entity;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PasswordEncoderUtil {
-    public static void main(String[] args) {
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
-        String rawPassword1 = "1111";
-        String rawPassword2 = "2222";
+    private final PasswordEncoder passwordEncoder;
 
-        String encodedPassword1 = passwordEncoder.encode(rawPassword1);
-        String encodedPassword2 = passwordEncoder.encode(rawPassword2);
+    public PasswordEncoderUtil(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
-        System.out.println("Encoded Password for '1111': " + encodedPassword1);
-        System.out.println("Encoded Password for '2222': " + encodedPassword2);
+    public String encodePassword(String rawPassword) {
+        return passwordEncoder.encode(rawPassword);
+    }
+
+    public PasswordEncoder getPasswordEncoder() {
+        return passwordEncoder;
     }
 }
